@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>클렌징 안내</title>
 
   <style>
@@ -126,8 +127,8 @@
 
     .concern-row {
       display: grid;
-      grid-template-columns: 105px 58px 1fr;
-      gap: 14px;
+      grid-template-columns: 105px 1fr;
+      gap: 18px;
       align-items: center;
       padding: 12px 0;
       border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
@@ -143,32 +144,6 @@
       border-radius: 50%;
       object-fit: cover;
       background: #eee;
-    }
-
-    .concern-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .ko .concern-icon {
-      border: 1px solid #e94d6b;
-      color: #e94d6b;
-    }
-
-    .zh .concern-icon {
-      border: 1px solid #5b963b;
-      color: #5b963b;
-    }
-
-    .vi .concern-icon {
-      border: 1px solid #1479c8;
-      color: #1479c8;
     }
 
     .concern-text {
@@ -241,19 +216,13 @@
       }
 
       .concern-row {
-        grid-template-columns: 82px 44px 1fr;
-        gap: 10px;
+        grid-template-columns: 82px 1fr;
+        gap: 14px;
       }
 
       .concern-image {
         width: 80px;
         height: 80px;
-      }
-
-      .concern-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 20px;
       }
 
       .concern-text {
@@ -277,10 +246,10 @@
         nextTitle: "한국어 화면",
         nextText: "다음 화면 내용을 여기에 새로 만들 예정입니다.",
         concerns: [
-          ["skin-makeup.jpg", "◇", "제대로", "세정되지 않은 메이크업"],
-          ["skin-pores.jpg", "⌒", "꽉 찬 블랙헤드로", "늘어난 모공"],
-          ["skin-sensitive.jpg", "♧", "민감한 피부를", "자극하는 클렌징"],
-          ["skin-sebum.jpg", "◎", "모공 속 쌓이는", "피지와 노폐물"]
+          ["skin-makeup.jpg", "제대로", "세정되지 않은 메이크업"],
+          ["skin-pores.jpg", "꽉 찬 블랙헤드로", "늘어난 모공"],
+          ["skin-sensitive.jpg", "민감한 피부를", "자극하는 클렌징"],
+          ["skin-sebum.jpg", "모공 속 쌓이는", "피지와 노폐물"]
         ]
       },
 
@@ -291,10 +260,10 @@
         nextTitle: "中文页面",
         nextText: "下一页内容将在这里重新制作。",
         concerns: [
-          ["skin-makeup.jpg", "◇", "彩妆残留，", "卸不彻底"],
-          ["skin-pores.jpg", "⌒", "黑头堆积，", "毛孔粗大"],
-          ["skin-sensitive.jpg", "♧", "卸妆过程中", "容易刺激敏感肌肤"],
-          ["skin-sebum.jpg", "◎", "毛孔内堆积", "油脂和老废角质"]
+          ["skin-makeup.jpg", "彩妆残留，", "卸不彻底"],
+          ["skin-pores.jpg", "黑头堆积，", "毛孔粗大"],
+          ["skin-sensitive.jpg", "卸妆过程中", "容易刺激敏感肌肤"],
+          ["skin-sebum.jpg", "毛孔内堆积", "油脂和老废角质"]
         ]
       },
 
@@ -305,10 +274,10 @@
         nextTitle: "Màn hình tiếng Việt",
         nextText: "Nội dung tiếp theo sẽ được tạo mới tại đây.",
         concerns: [
-          ["skin-makeup.jpg", "◇", "Cặn trang điểm", "còn sót lại"],
-          ["skin-pores.jpg", "⌒", "Mụn đầu đen", "tích tụ, lỗ chân lông to hơn"],
-          ["skin-sensitive.jpg", "♧", "Làm sạch dễ gây", "kích ứng cho da nhạy cảm"],
-          ["skin-sebum.jpg", "◎", "Dầu thừa và", "tế bào chết tích tụ trong lỗ chân lông"]
+          ["skin-makeup.jpg", "Cặn trang điểm", "còn sót lại"],
+          ["skin-pores.jpg", "Mụn đầu đen", "tích tụ, lỗ chân lông to hơn"],
+          ["skin-sensitive.jpg", "Làm sạch dễ gây", "kích ứng cho da nhạy cảm"],
+          ["skin-sebum.jpg", "Dầu thừa và", "tế bào chết tích tụ trong lỗ chân lông"]
         ]
       }
     };
@@ -333,8 +302,7 @@
             return (
               '<div class="concern-row">' +
                 '<img class="concern-image" src="' + item[0] + '" alt="">' +
-                '<div class="concern-icon">' + item[1] + '</div>' +
-                '<div class="concern-text">' + item[2] + '<span>' + item[3] + '</span></div>' +
+                '<div class="concern-text">' + item[1] + '<span>' + item[2] + '</span></div>' +
               '</div>'
             );
           }).join("");
