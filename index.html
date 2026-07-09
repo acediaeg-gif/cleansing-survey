@@ -34,12 +34,6 @@
       padding: 18px;
       min-height: 680px;
       box-sizing: border-box;
-      cursor: pointer;
-    }
-
-    .language-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 
     .ko {
@@ -58,13 +52,22 @@
     }
 
     .language-label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 12px;
       border-radius: 10px;
       background: white;
       font-size: 18px;
       font-weight: 800;
       margin-bottom: 22px;
+    }
+
+    .language-flag {
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      border-radius: 3px;
     }
 
     .ko .language-label {
@@ -103,14 +106,28 @@
     }
 
     .question-banner {
+      width: 100%;
       margin-bottom: 24px;
       padding: 16px 12px;
+      border: 0;
       border-radius: 8px;
       color: white;
       text-align: center;
       font-size: 25px;
       font-weight: 800;
       line-height: 1.35;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .question-banner:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+
+    .question-banner:active {
+      transform: scale(0.98);
     }
 
     .ko .question-banner {
@@ -123,6 +140,24 @@
 
     .vi .question-banner {
       background: #1479c8;
+    }
+
+    .question-banner.clicked {
+      animation: softGlow 0.55s ease;
+    }
+
+    @keyframes softGlow {
+      0% {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      }
+
+      45% {
+        box-shadow: 0 0 22px rgba(255, 255, 255, 0.95), 0 0 30px currentColor;
+      }
+
+      100% {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      }
     }
 
     .concern-row {
@@ -150,6 +185,18 @@
       font-size: 22px;
       line-height: 1.35;
       font-weight: 800;
+    }
+
+    .ko .concern-title {
+      color: #e94d6b;
+    }
+
+    .zh .concern-title {
+      color: #4f8c30;
+    }
+
+    .vi .concern-title {
+      color: #1479c8;
     }
 
     .concern-text span {
@@ -207,6 +254,15 @@
         padding: 14px;
       }
 
+      .language-label {
+        font-size: 17px;
+      }
+
+      .language-flag {
+        width: 23px;
+        height: 23px;
+      }
+
       .intro-text {
         font-size: 21px;
       }
@@ -240,7 +296,8 @@
 
     const cards = {
       ko: {
-        label: "🇰🇷 한국어",
+        flag: "kr.jpg",
+        label: "한국어",
         intro: '몇 번을 지워도 남아있는 <span class="highlight">메이크업</span><br>폼클렌저로 지우기 힘든 <span class="highlight">선크림</span>',
         banner: "클렌징할 때마다 고민이라면?",
         nextTitle: "한국어 화면",
@@ -254,7 +311,8 @@
       },
 
       zh: {
-        label: "🇨🇳 中文(简体)",
+        flag: "cn.jpg",
+        label: "中文(简体)",
         intro: '即使反复清洗，彩妆依然有<span class="highlight">残留</span><br>仅用泡沫洁面难以彻底洗净<span class="highlight">防晒</span>',
         banner: "每次卸妆都有这些烦恼吗？",
         nextTitle: "中文页面",
@@ -268,7 +326,8 @@
       },
 
       vi: {
-        label: "🇻🇳 Tiếng Việt",
+        flag: "viet.jpg",
+        label: "Tiếng Việt",
         intro: 'Trang điểm vẫn còn <span class="highlight">sót lại</span> dù đã rửa nhiều lần<br>Kem chống nắng <span class="highlight">khó làm sạch</span> chỉ bằng sữa rửa mặt',
         banner: "Bạn có gặp những vấn đề này khi làm sạch da không?",
         nextTitle: "Màn hình tiếng Việt",
@@ -295,20 +354,32 @@
         card.className = "language-card " + language;
 
         card.innerHTML =
-          '<div class="language-label">' + data.label + '</div>' +
+          '<div class="language-label">' +
+            '<img class="language-flag" src="' + data.flag + '" alt="">' +
+            data.label +
+          '</div>' +
           '<p class="intro-text">' + data.intro + '</p>' +
-          '<div class="question-banner">' + data.banner + '</div>' +
+          '<button class="question-banner" type="button">' + data.banner + '</button>' +
           data.concerns.map(function(item) {
             return (
               '<div class="concern-row">' +
                 '<img class="concern-image" src="' + item[0] + '" alt="">' +
-                '<div class="concern-text">' + item[1] + '<span>' + item[2] + '</span></div>' +
+                '<div class="concern-text">' +
+                  '<span class="concern-title">' + item[1] + '</span>' +
+                  '<span>' + item[2] + '</span>' +
+                '</div>' +
               '</div>'
             );
           }).join("");
 
-        card.addEventListener("click", function() {
-          showNextScreen(language);
+        const bannerButton = card.querySelector(".question-banner");
+
+        bannerButton.addEventListener("click", function() {
+          bannerButton.classList.add("clicked");
+
+          setTimeout(function() {
+            showNextScreen(language);
+          }, 350);
         });
 
         grid.appendChild(card);
