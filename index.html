@@ -34,6 +34,7 @@
       padding: 18px;
       min-height: 680px;
       box-sizing: border-box;
+      scroll-margin-top: 14px;
     }
 
     .ko {
@@ -51,45 +52,62 @@
       background: #f4fbff;
     }
 
-    .language-label {
-      display: inline-flex;
-      align-items: center;
+    .language-tabs {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: white;
-      font-size: 18px;
-      font-weight: 800;
       margin-bottom: 22px;
     }
 
-    .language-flag {
+    .language-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: white;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .language-tab img {
       width: 24px;
       height: 24px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 3px;
     }
 
-    .ko .language-label {
-      color: #d94663;
+    .language-tab.zh-tab img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .ko .language-tab {
       border: 1px solid #e94d6b;
+      color: #d94663;
     }
 
-    .zh .language-label {
-      color: #4f8c30;
+    .zh .language-tab {
       border: 1px solid #5b963b;
+      color: #4f8c30;
     }
 
-    .vi .language-label {
-      color: #1372bd;
+    .vi .language-tab {
       border: 1px solid #1479c8;
+      color: #1372bd;
+    }
+
+    .language-tab:hover {
+      filter: brightness(0.97);
+      transform: translateY(-1px);
     }
 
     .intro-text {
       margin: 0 0 28px;
       text-align: center;
       font-size: 24px;
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.45;
     }
 
@@ -114,7 +132,7 @@
       color: white;
       text-align: center;
       font-size: 25px;
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.35;
       cursor: pointer;
       box-sizing: border-box;
@@ -140,6 +158,11 @@
 
     .vi .question-banner {
       background: #1479c8;
+    }
+
+    .vi .question-banner {
+      font-size: 20px;
+      line-height: 1.25;
     }
 
     .question-banner.clicked {
@@ -187,6 +210,17 @@
       font-weight: 800;
     }
 
+    .concern-title {
+      display: block;
+      font-weight: 900;
+    }
+
+    .concern-desc {
+      display: block;
+      color: #111;
+      font-weight: 800;
+    }
+
     .ko .concern-title {
       color: #e94d6b;
     }
@@ -199,10 +233,9 @@
       color: #1479c8;
     }
 
-    .concern-text span {
-      display: block;
-      color: #111;
-      font-weight: 500;
+    .vi .concern-text {
+      font-size: 19px;
+      line-height: 1.3;
     }
 
     .next-screen {
@@ -254,13 +287,19 @@
         padding: 14px;
       }
 
-      .language-label {
-        font-size: 17px;
+      .language-tab {
+        font-size: 15px;
+        padding: 7px 9px;
       }
 
-      .language-flag {
-        width: 23px;
-        height: 23px;
+      .language-tab img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .language-tab.zh-tab img {
+        width: 27px;
+        height: 27px;
       }
 
       .intro-text {
@@ -269,6 +308,10 @@
 
       .question-banner {
         font-size: 22px;
+      }
+
+      .vi .question-banner {
+        font-size: 18px;
       }
 
       .concern-row {
@@ -284,6 +327,10 @@
       .concern-text {
         font-size: 18px;
       }
+
+      .vi .concern-text {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -294,14 +341,34 @@
   <script>
     const app = document.getElementById("app");
 
+    const languageTabs = [
+      {
+        code: "ko",
+        className: "ko-tab",
+        flag: "kr.jpg",
+        label: "한국어"
+      },
+      {
+        code: "zh",
+        className: "zh-tab",
+        flag: "cn.jpg",
+        label: "中文(简体)"
+      },
+      {
+        code: "vi",
+        className: "vi-tab",
+        flag: "viet.jpg",
+        label: "Tiếng Việt"
+      }
+    ];
+
     const cards = {
       ko: {
-        flag: "kr.jpg",
-        label: "한국어",
         intro: '몇 번을 지워도 남아있는 <span class="highlight">메이크업</span><br>폼클렌저로 지우기 힘든 <span class="highlight">선크림</span>',
         banner: "클렌징할 때마다 고민이라면?",
         nextTitle: "한국어 화면",
         nextText: "다음 화면 내용을 여기에 새로 만들 예정입니다.",
+        backText: "처음 화면으로",
         concerns: [
           ["skin-makeup.jpg", "제대로", "세정되지 않은 메이크업"],
           ["skin-pores.jpg", "꽉 찬 블랙헤드로", "늘어난 모공"],
@@ -311,12 +378,11 @@
       },
 
       zh: {
-        flag: "cn.jpg",
-        label: "中文(简体)",
         intro: '即使反复清洗，彩妆依然有<span class="highlight">残留</span><br>仅用泡沫洁面难以彻底洗净<span class="highlight">防晒</span>',
         banner: "每次卸妆都有这些烦恼吗？",
         nextTitle: "中文页面",
         nextText: "下一页内容将在这里重新制作。",
+        backText: "返回首页",
         concerns: [
           ["skin-makeup.jpg", "彩妆残留，", "卸不彻底"],
           ["skin-pores.jpg", "黑头堆积，", "毛孔粗大"],
@@ -326,12 +392,11 @@
       },
 
       vi: {
-        flag: "viet.jpg",
-        label: "Tiếng Việt",
         intro: 'Trang điểm vẫn còn <span class="highlight">sót lại</span> dù đã rửa nhiều lần<br>Kem chống nắng <span class="highlight">khó làm sạch</span> chỉ bằng sữa rửa mặt',
         banner: "Bạn có gặp những vấn đề này khi làm sạch da không?",
         nextTitle: "Màn hình tiếng Việt",
         nextText: "Nội dung tiếp theo sẽ được tạo mới tại đây.",
+        backText: "Về màn hình đầu",
         concerns: [
           ["skin-makeup.jpg", "Cặn trang điểm", "còn sót lại"],
           ["skin-pores.jpg", "Mụn đầu đen", "tích tụ, lỗ chân lông to hơn"],
@@ -340,6 +405,32 @@
         ]
       }
     };
+
+    function makeLanguageTabs() {
+      return (
+        '<div class="language-tabs">' +
+          languageTabs.map(function(tab) {
+            return (
+              '<button class="language-tab ' + tab.className + '" type="button" onclick="scrollToLanguage(\'' + tab.code + '\')">' +
+                '<img src="' + tab.flag + '" alt="">' +
+                '<span>' + tab.label + '</span>' +
+              '</button>'
+            );
+          }).join("") +
+        '</div>'
+      );
+    }
+
+    function scrollToLanguage(language) {
+      const target = document.getElementById("card-" + language);
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
 
     function showLanguageScreen() {
       app.innerHTML = "";
@@ -352,12 +443,10 @@
 
         const card = document.createElement("div");
         card.className = "language-card " + language;
+        card.id = "card-" + language;
 
         card.innerHTML =
-          '<div class="language-label">' +
-            '<img class="language-flag" src="' + data.flag + '" alt="">' +
-            data.label +
-          '</div>' +
+          makeLanguageTabs() +
           '<p class="intro-text">' + data.intro + '</p>' +
           '<button class="question-banner" type="button">' + data.banner + '</button>' +
           data.concerns.map(function(item) {
@@ -366,7 +455,7 @@
                 '<img class="concern-image" src="' + item[0] + '" alt="">' +
                 '<div class="concern-text">' +
                   '<span class="concern-title">' + item[1] + '</span>' +
-                  '<span>' + item[2] + '</span>' +
+                  '<span class="concern-desc">' + item[2] + '</span>' +
                 '</div>' +
               '</div>'
             );
@@ -395,7 +484,7 @@
         '<section class="next-screen">' +
           '<h1>' + data.nextTitle + '</h1>' +
           '<p>' + data.nextText + '</p>' +
-          '<button class="back-button" onclick="showLanguageScreen()">처음 화면으로</button>' +
+          '<button class="back-button" onclick="showLanguageScreen()">' + data.backText + '</button>' +
         '</section>';
     }
 
