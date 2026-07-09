@@ -10,7 +10,7 @@
     body {
       margin: 0;
       font-family: Arial, "Noto Sans KR", sans-serif;
-      background: #f7f8f5;
+      background: #f7f8f5;   
       color: #111;
     }
 
@@ -78,11 +78,6 @@
       border-radius: 3px;
     }
 
-    .language-tab.zh-tab img {
-      width: 30px;
-      height: 30px;
-    }
-
     .ko .language-tab {
       border: 1px solid #e94d6b;
       color: #d94663;
@@ -97,6 +92,13 @@
       border: 1px solid #1479c8;
       color: #1372bd;
     }
+    
+.vi .language-tab {
+  font-size: 14px;
+  gap: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
 
     .language-tab:hover {
       filter: brightness(0.97);
@@ -229,6 +231,13 @@
       color: #4f8c30;
     }
 
+    .zh .intro-text,
+.zh .concern-text,
+.zh .concern-title,
+.zh .concern-desc {
+  font-weight: 900;
+}
+    
     .vi .concern-title {
       color: #1479c8;
     }
@@ -283,6 +292,13 @@
         padding: 12px;
       }
 
+      .vi .language-tab {
+  font-size: 13px;
+  gap: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+      
       .language-card {
         padding: 14px;
       }
@@ -295,11 +311,6 @@
       .language-tab img {
         width: 22px;
         height: 22px;
-      }
-
-      .language-tab.zh-tab img {
-        width: 27px;
-        height: 27px;
       }
 
       .intro-text {
