@@ -232,6 +232,30 @@
       box-sizing: border-box;
     }
 
+    .routine-page.zh,
+    .modal-card.zh {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+    }
+
+    .routine-page.zh .routine-title,
+    .routine-page.zh .routine-subtitle,
+    .routine-page.zh .product-name,
+    .routine-page.zh .product-brand,
+    .routine-page.zh .product-price,
+    .routine-page.zh .product-point,
+    .routine-page.zh .product-desc,
+    .routine-page.zh .product-list li,
+    .routine-page.zh .routine-tip,
+    .modal-card.zh .modal-title,
+    .modal-card.zh .modal-brand,
+    .modal-card.zh .modal-price,
+    .modal-card.zh .modal-point,
+    .modal-card.zh .modal-desc,
+    .modal-card.zh .modal-list li {
+      font-weight: 900 !important;
+      text-shadow: 0.25px 0 0 currentColor;
+    }
+
     .routine-header {
       text-align: center;
       margin-bottom: 18px;
@@ -739,7 +763,6 @@
         title: '올리브영 추천! <span style="color:#e62f65;">스킨케어 루틴</span>',
         subtitle: "",
         backText: "처음 화면으로",
-        closeText: "닫기",
         tip: "TIP  선크림 → 클렌징밤 → 클렌징폼 → 수딩젤 → 먹는 레티놀",
         products: [
           {
@@ -748,7 +771,7 @@
             name: "클렌징밤",
             brand: "CLEAN IT ZERO<br>클렌징밤",
             image: "bam.jpg",
-            price: "6,000 won",
+            price: "6,000원",
             point: "선크림은 바르는 것 만큼<br>지우는 것도 중요!",
             desc: "선크림과 메이크업을<br>부드럽게 클렌징해요.",
             list: ["메이크업 & 선크림 잔여물 제거", "블랙헤드 & 피지 케어", "부드럽게 녹아 자극 없이 클렌징", "모든 피부 타입 사용 가능"]
@@ -759,7 +782,7 @@
             name: "먹는 레티놀",
             brand: "VITALBEAUTIE<br>슈퍼 레티놀",
             image: "lemona.jpg",
-            price: "12,900 won~",
+            price: "12,900원~",
             point: "피부 안과 밖을<br>함께 관리!",
             desc: "먹는 레티놀로<br>피부 건강을 챙겨요.",
             list: ["비타민 A, C, D, E 함유", "비타민 C 1,000mg", "판토텐산, 나이아신 함유", "피부 건강을 위한 이너뷰티"]
@@ -770,7 +793,7 @@
             name: "수딩젤",
             brand: "BRINGGREEN<br>알로에 97% 수딩젤",
             image: "gel.jpg",
-            price: "4,690 won",
+            price: "4,690원",
             point: "햇빛에 자극 받은 피부를<br>시원하게 진정!",
             desc: "수분을 가득 채워줘요.",
             list: ["알로에 97% 함유", "피부 열감 진정", "수분 공급 & 보습", "끈적임 없는 산뜻한 젤"]
@@ -781,7 +804,7 @@
             name: "클렌징폼",
             brand: "ROUND LAB<br>독도 클렌저",
             image: "dokdo.jpg",
-            price: "15,000 won",
+            price: "15,000원",
             point: "폼클렌저 하나로<br>마무리 세안!",
             desc: "더욱 깨끗하고 산뜻하게.",
             list: ["약산성 포뮬러", "순한 세안", "노폐물 & 잔여물 제거", "촉촉하고 산뜻한 마무리"]
@@ -794,7 +817,6 @@
         title: "Olive Young 推荐！护肤护理步骤",
         subtitle: "内外兼修，才是健康肌肤的关键！",
         backText: "返回首页",
-        closeText: "关闭",
         tip: "TIP  防晒霜 → 卸妆膏 → 洗面奶 → 舒缓凝胶 → 口服视黄醇",
         products: [
           {
@@ -849,7 +871,6 @@
         title: "Routine chăm sóc da được Olive Young 추천!",
         subtitle: "Chăm sóc làn da từ bên trong và bên ngoài là điều quan trọng!",
         backText: "Về màn hình đầu",
-        closeText: "Đóng",
         tip: "TIP  Kem chống nắng → Sáp tẩy trang → Sữa rửa mặt → Gel làm dịu → Retinol dạng uống",
         products: [
           {
@@ -975,7 +996,7 @@
       const data = routines[language];
 
       app.innerHTML =
-        '<section class="routine-page">' +
+        '<section class="routine-page ' + language + '">' +
           '<header class="routine-header">' +
             '<img class="routine-flag" src="' + data.flag + '" alt="">' +
             '<h1 class="routine-title">' + data.title + '</h1>' +
@@ -1016,7 +1037,7 @@
 
       modal.className = "modal-overlay show";
       modal.innerHTML =
-        '<div class="modal-card ' + product.color + '" onclick="event.stopPropagation()">' +
+        '<div class="modal-card ' + product.color + ' ' + language + '" onclick="event.stopPropagation()">' +
           '<button class="modal-close" onclick="closeProductModal()">&times;</button>' +
           '<div class="product-number">' + product.number + '</div>' +
           '<h2 class="modal-title product-name">' + product.name + '</h2>' +
