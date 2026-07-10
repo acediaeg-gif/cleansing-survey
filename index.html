@@ -99,11 +99,6 @@
       color: #1372bd;
     }
 
-    .language-tab:hover {
-      filter: brightness(0.97);
-      transform: translateY(-1px);
-    }
-
     .intro-text {
       margin: 0 0 28px;
       text-align: center;
@@ -155,11 +150,11 @@
     }
 
     .zh .question-banner {
-  background: #5b963b;
-  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
-  font-weight: 900;
-  text-shadow: 0 0 0 #ffffff;
-}
+      background: #5b963b;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      font-weight: 900;
+      text-shadow: 0.4px 0 0 #ffffff, -0.4px 0 0 #ffffff;
+    }
 
     .vi .question-banner {
       background: #1479c8;
@@ -172,16 +167,8 @@
     }
 
     @keyframes softGlow {
-      0% {
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-      }
-
       45% {
         box-shadow: 0 0 22px rgba(255, 255, 255, 0.95), 0 0 30px currentColor;
-      }
-
-      100% {
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
       }
     }
 
@@ -192,10 +179,6 @@
       align-items: center;
       padding: 12px 0;
       border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
-    }
-
-    .concern-row:last-child {
-      border-bottom: 0;
     }
 
     .concern-image {
@@ -235,37 +218,226 @@
       color: #1479c8;
     }
 
-    .zh .intro-text,
-    .zh .question-banner,
-    .zh .concern-text,
-    .zh .concern-title,
-    .zh .concern-desc {
-      font-weight: 900;
-    }
-
     .vi .concern-text {
       font-size: 18px;
       line-height: 1.28;
     }
 
-    .next-screen {
-      max-width: 560px;
-      margin: 40px auto;
-      padding: 32px;
+    .routine-page {
+      max-width: 1180px;
+      margin: 0 auto;
       background: white;
       border-radius: 12px;
+      padding: 22px;
+      box-sizing: border-box;
+    }
+
+    .routine-header {
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 18px;
     }
 
-    .next-screen h1 {
-      font-size: 26px;
-      margin: 0 0 18px;
+    .routine-flag {
+      width: 36px;
+      height: 24px;
+      object-fit: contain;
+      margin-bottom: 6px;
     }
 
-    .next-screen p {
+    .routine-title {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .routine-subtitle {
+      margin: 6px 0 0;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      border: 1px solid #f2cfd8;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      box-sizing: border-box;
+      min-height: 520px;
+      cursor: pointer;
+      background: white;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card.orange {
+      border-color: #ffd7a3;
+    }
+
+    .product-card.green {
+      border-color: #c8e1bb;
+    }
+
+    .product-card.blue {
+      border-color: #c3d9f3;
+    }
+
+    .product-number {
+      display: inline-block;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 5px;
       font-size: 18px;
-      line-height: 1.6;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .pink .product-number {
+      background: #e62f65;
+    }
+
+    .orange .product-number {
+      background: #ff9f12;
+    }
+
+    .green .product-number {
+      background: #2f7d37;
+    }
+
+    .blue .product-number {
+      background: #1b65b9;
+    }
+
+    .product-name {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .pink .product-name,
+    .pink .product-price,
+    .pink .product-point {
+      color: #e62f65;
+    }
+
+    .orange .product-name,
+    .orange .product-price,
+    .orange .product-point {
+      color: #ff8a00;
+    }
+
+    .green .product-name,
+    .green .product-price,
+    .green .product-point {
+      color: #2f7d37;
+    }
+
+    .blue .product-name,
+    .blue .product-price,
+    .blue .product-point {
+      color: #1b65b9;
+    }
+
+    .product-brand {
+      margin: 6px 0 10px;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin: 4px 0 8px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0 0 10px;
+    }
+
+    .product-point {
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin: 0 0 10px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin: 0 0 12px;
+    }
+
+    .product-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      text-align: left;
+    }
+
+    .product-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 7px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .product-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 900;
+    }
+
+    .pink .product-list li::before {
+      color: #e62f65;
+    }
+
+    .orange .product-list li::before {
+      color: #ff8a00;
+    }
+
+    .green .product-list li::before {
+      color: #2f7d37;
+    }
+
+    .blue .product-list li::before {
+      color: #1b65b9;
+    }
+
+    .routine-tip {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #fff0f3;
+      color: #e62f65;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .routine-actions {
+      margin-top: 18px;
+      text-align: center;
     }
 
     .back-button {
@@ -275,7 +447,132 @@
       background: #333;
       color: white;
       font-size: 16px;
+      font-weight: 900;
       cursor: pointer;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.48);
+      box-sizing: border-box;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(720px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 14px;
+      padding: 26px;
+      box-sizing: border-box;
+      text-align: center;
+      animation: modalPop 0.24s ease;
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: #111;
+      color: white;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .modal-image {
+      width: 100%;
+      max-width: 360px;
+      height: 260px;
+      object-fit: contain;
+      margin: 12px auto;
+      display: block;
+    }
+
+    .modal-title {
+      margin: 6px 0 6px;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .modal-brand {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .modal-price {
+      margin: 0 0 12px;
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .modal-point {
+      margin: 0 0 10px;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .modal-desc {
+      margin: 0 0 14px;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .modal-list {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+    }
+
+    .modal-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 9px;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .modal-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 900;
     }
 
     @media (max-width: 1000px) {
@@ -287,13 +584,8 @@
         min-height: auto;
       }
 
-      .language-tabs {
-        justify-content: flex-start;
-      }
-
-      .language-tab {
-        font-size: 13px;
-        padding: 6px 7px;
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -350,6 +642,46 @@
       .vi .concern-text {
         font-size: 15px;
       }
+
+      .routine-page {
+        padding: 14px;
+      }
+
+      .routine-title {
+        font-size: 23px;
+      }
+
+      .routine-subtitle {
+        font-size: 13px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card {
+        min-height: auto;
+      }
+
+      .product-image {
+        height: 170px;
+      }
+
+      .modal-card {
+        padding: 22px 18px;
+      }
+
+      .modal-title {
+        font-size: 24px;
+      }
+
+      .modal-image {
+        height: 220px;
+      }
+
+      .modal-point {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -361,30 +693,15 @@
     const app = document.getElementById("app");
 
     const languageTabs = [
-      {
-        code: "ko",
-        flag: "kr.jpg",
-        label: "한국어"
-      },
-      {
-        code: "zh",
-        flag: "cn.jpg",
-        label: "中文(简体)"
-      },
-      {
-        code: "vi",
-        flag: "viet.jpg",
-        label: "Tiếng Việt"
-      }
+      { code: "ko", flag: "kr.jpg", label: "한국어" },
+      { code: "zh", flag: "cn.jpg", label: "中文(简体)" },
+      { code: "vi", flag: "viet.jpg", label: "Tiếng Việt" }
     ];
 
     const cards = {
       ko: {
         intro: '몇 번을 지워도 남아있는 <span class="highlight">메이크업</span><br>폼클렌저로 지우기 힘든 <span class="highlight">선크림</span>',
         banner: "클렌징할 때마다 고민이라면?",
-        nextTitle: "한국어 화면",
-        nextText: "다음 화면 내용을 여기에 새로 만들 예정입니다.",
-        backText: "처음 화면으로",
         concerns: [
           ["skin-makeup.jpg", "제대로", "세정되지 않은 메이크업"],
           ["skin-pores.jpg", "꽉 찬 블랙헤드로", "늘어난 모공"],
@@ -396,9 +713,6 @@
       zh: {
         intro: '即使反复清洗，彩妆依然有<span class="highlight">残留</span><br>仅用泡沫洁面难以彻底洗净<span class="highlight">防晒</span>',
         banner: "每次卸妆都有这些烦恼吗？",
-        nextTitle: "中文页面",
-        nextText: "下一页内容将在这里重新制作。",
-        backText: "返回首页",
         concerns: [
           ["skin-makeup.jpg", "彩妆残留，", "卸不彻底"],
           ["skin-pores.jpg", "黑头堆积，", "毛孔粗大"],
@@ -410,9 +724,6 @@
       vi: {
         intro: 'Trang điểm vẫn còn <span class="highlight">sót lại</span> dù đã rửa nhiều lần<br>Kem chống nắng <span class="highlight">khó làm sạch</span> chỉ bằng sữa rửa mặt',
         banner: "Bạn có gặp những vấn đề này khi làm sạch da không?",
-        nextTitle: "Màn hình tiếng Việt",
-        nextText: "Nội dung tiếp theo sẽ được tạo mới tại đây.",
-        backText: "Về màn hình đầu",
         concerns: [
           ["skin-makeup.jpg", "Cặn trang điểm", "còn sót lại"],
           ["skin-pores.jpg", "Mụn đầu đen", "tích tụ, lỗ chân lông to hơn"],
@@ -422,89 +733,175 @@
       }
     };
 
+    const routines = {
+      ko: {
+        flag: "kr.jpg",
+        title: '올리브영 추천! <span style="color:#e62f65;">스킨케어 루틴</span>',
+        subtitle: "",
+        backText: "처음 화면으로",
+        closeText: "닫기",
+        tip: "TIP  선크림 → 클렌징밤 → 클렌징폼 → 수딩젤 → 먹는 레티놀",
+        products: [
+          {
+            color: "pink",
+            number: "01",
+            name: "클렌징밤",
+            brand: "CLEAN IT ZERO<br>클렌징밤",
+            image: "bam.jpg",
+            price: "6,000원",
+            point: "선크림은 바르는 것 만큼<br>지우는 것도 중요!",
+            desc: "선크림과 메이크업을<br>부드럽게 클렌징해요.",
+            list: ["메이크업 & 선크림 잔여물 제거", "블랙헤드 & 피지 케어", "부드럽게 녹아 자극 없이 클렌징", "모든 피부 타입 사용 가능"]
+          },
+          {
+            color: "orange",
+            number: "02",
+            name: "먹는 레티놀",
+            brand: "VITALBEAUTIE<br>슈퍼 레티놀",
+            image: "lemona.jpg",
+            price: "12,900원~",
+            point: "피부 안과 밖을<br>함께 관리!",
+            desc: "먹는 레티놀로<br>피부 건강을 챙겨요.",
+            list: ["비타민 A, C, D, E 함유", "비타민 C 1,000mg", "판토텐산, 나이아신 함유", "피부 건강을 위한 이너뷰티"]
+          },
+          {
+            color: "green",
+            number: "03",
+            name: "수딩젤",
+            brand: "BRINGGREEN<br>알로에 97% 수딩젤",
+            image: "gel.jpg",
+            price: "4,690원",
+            point: "햇빛에 자극 받은 피부를<br>시원하게 진정!",
+            desc: "수분을 가득 채워줘요.",
+            list: ["알로에 97% 함유", "피부 열감 진정", "수분 공급 & 보습", "끈적임 없는 산뜻한 젤"]
+          },
+          {
+            color: "blue",
+            number: "04",
+            name: "클렌징폼",
+            brand: "ROUND LAB<br>독도 클렌저",
+            image: "dokdo.jpg",
+            price: "12,900원",
+            point: "폼클렌저 하나로<br>마무리 세안!",
+            desc: "더욱 깨끗하고 산뜻하게.",
+            list: ["약산성 포뮬러", "순한 세안", "노폐물 & 잔여물 제거", "촉촉하고 산뜻한 마무리"]
+          }
+        ]
+      },
+
+      zh: {
+        flag: "cn.jpg",
+        title: "Olive Young 推荐！护肤护理步骤",
+        subtitle: "内外兼修，才是健康肌肤的关键！",
+        backText: "返回首页",
+        closeText: "关闭",
+        tip: "TIP  防晒霜 → 卸妆膏 → 洗面奶 → 舒缓凝胶 → 口服视黄醇",
+        products: [
+          {
+            color: "pink",
+            number: "01",
+            name: "卸妆膏",
+            brand: "CLEAN IT ZERO<br>卸妆膏",
+            image: "bam.jpg",
+            price: "6,000원",
+            point: "防晒霜和妆容<br>清洁同样重要！",
+            desc: "温和卸除防晒和妆容，<br>一瓶搞定！",
+            list: ["清除彩妆 & 防晒残留", "管理黑头 & 皮脂", "柔软溶解，不刺激肌肤", "适用于所有肤质"]
+          },
+          {
+            color: "orange",
+            number: "02",
+            name: "口服视黄醇",
+            brand: "VITALBEAUTIE<br>超级视黄醇",
+            image: "lemona.jpg",
+            price: "12,900원~",
+            point: "内外一起护理肌肤！",
+            desc: "口服视黄醇，<br>为肌肤补充健康能量！",
+            list: ["含有维生素 A, C, D, E", "维生素 C 1,000mg", "含有泛酸、烟酰胺", "为肌肤健康的内服美容产品"]
+          },
+          {
+            color: "green",
+            number: "03",
+            name: "舒缓凝胶",
+            brand: "BRINGGREEN<br>芦荟97%舒缓凝胶",
+            image: "gel.jpg",
+            price: "4,690원",
+            point: "舒缓晒后受刺激的肌肤！",
+            desc: "为肌肤注入满满水分！",
+            list: ["含芦荟 97%", "舒缓肌肤发热感", "补水保湿", "清爽凝胶质地，不粘腻"]
+          },
+          {
+            color: "blue",
+            number: "04",
+            name: "洗面奶",
+            brand: "ROUND LAB<br>独岛洗面奶",
+            image: "dokdo.jpg",
+            price: "12,900원",
+            point: "用洗面奶完成清洁步骤！",
+            desc: "更干净清爽！",
+            list: ["弱酸性配方", "温和洁面", "去除污垢 & 残留物", "洗后水润清爽"]
+          }
+        ]
+      },
+
+      vi: {
+        flag: "viet.jpg",
+        title: "Routine chăm sóc da được Olive Young 추천!",
+        subtitle: "Chăm sóc làn da từ bên trong và bên ngoài là điều quan trọng!",
+        backText: "Về màn hình đầu",
+        closeText: "Đóng",
+        tip: "TIP  Kem chống nắng → Sáp tẩy trang → Sữa rửa mặt → Gel làm dịu → Retinol dạng uống",
+        products: [
+          {
+            color: "pink",
+            number: "01",
+            name: "Sáp tẩy trang",
+            brand: "CLEAN IT ZERO<br>cleansing balm",
+            image: "bam.jpg",
+            price: "6,000원",
+            point: "Kem chống nắng cần được<br>làm sạch kỹ lưỡng!",
+            desc: "Làm sạch kem chống nắng và<br>lớp trang điểm một cách dịu nhẹ!",
+            list: ["Loại bỏ cặn trang điểm & kem chống nắng", "Chăm sóc mụn đầu đen & bã nhờn", "Làm tan nhẹ nhàng, không gây kích ứng", "Phù hợp với mọi loại da"]
+          },
+          {
+            color: "orange",
+            number: "02",
+            name: "Retinol dạng uống",
+            brand: "VITALBEAUTIE<br>Super Retinol",
+            image: "lemona.jpg",
+            price: "12,900원~",
+            point: "Chăm sóc làn da từ<br>bên trong và bên ngoài!",
+            desc: "Bổ sung Retinol dạng uống<br>để nuôi dưỡng da khỏe mạnh!",
+            list: ["Chứa vitamin A, C, D, E", "Vitamin C 1,000mg", "Chứa panthenic acid, niacin", "Sản phẩm làm đẹp từ bên trong"]
+          },
+          {
+            color: "green",
+            number: "03",
+            name: "Gel làm dịu",
+            brand: "BRINGGREEN<br>Aloe 97% Soothing Gel",
+            image: "gel.jpg",
+            price: "4,690원",
+            point: "Làm dịu da bị kích ứng<br>bởi ánh nắng!",
+            desc: "Cấp ẩm đầy đủ cho da!",
+            list: ["Chứa 97% chiết xuất lô hội", "Làm dịu da bị nóng rát", "Cấp ẩm & dưỡng ẩm", "Kết cấu gel mát nhẹ, không bết dính"]
+          },
+          {
+            color: "blue",
+            number: "04",
+            name: "Sữa rửa mặt",
+            brand: "ROUND LAB<br>Dokdo Cleanser",
+            image: "dokdo.jpg",
+            price: "12,900원",
+            point: "Sử dụng sữa rửa mặt để<br>kết thúc bước làm sạch!",
+            desc: "Sạch sâu và sảng khoái hơn!",
+            list: ["Công thức dịu nhẹ, pH thấp", "Làm sạch dịu nhẹ", "Loại bỏ bụi bẩn & cặn bã", "Kết thúc ẩm mượt, sảng khoái"]
+          }
+        ]
+      }
+    };
+
     function makeLanguageTabs() {
       return (
         '<div class="language-tabs">' +
           languageTabs.map(function(tab) {
             return (
-              '<button class="language-tab" type="button" onclick="scrollToLanguage(\'' + tab.code + '\')">' +
-                '<img src="' + tab.flag + '" alt="">' +
-                '<span>' + tab.label + '</span>' +
-              '</button>'
-            );
-          }).join("") +
-        '</div>'
-      );
-    }
-
-    function scrollToLanguage(language) {
-      const target = document.getElementById("card-" + language);
-
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    }
-
-    function showLanguageScreen() {
-      app.innerHTML = "";
-
-      const grid = document.createElement("div");
-      grid.className = "language-grid";
-
-      Object.keys(cards).forEach(function(language) {
-        const data = cards[language];
-
-        const card = document.createElement("div");
-        card.className = "language-card " + language;
-        card.id = "card-" + language;
-
-        card.innerHTML =
-          makeLanguageTabs() +
-          '<p class="intro-text">' + data.intro + '</p>' +
-          '<button class="question-banner" type="button">' + data.banner + '</button>' +
-          data.concerns.map(function(item) {
-            return (
-              '<div class="concern-row">' +
-                '<img class="concern-image" src="' + item[0] + '" alt="">' +
-                '<div class="concern-text">' +
-                  '<span class="concern-title">' + item[1] + '</span>' +
-                  '<span class="concern-desc">' + item[2] + '</span>' +
-                '</div>' +
-              '</div>'
-            );
-          }).join("");
-
-        const bannerButton = card.querySelector(".question-banner");
-
-        bannerButton.addEventListener("click", function() {
-          bannerButton.classList.add("clicked");
-
-          setTimeout(function() {
-            showNextScreen(language);
-          }, 350);
-        });
-
-        grid.appendChild(card);
-      });
-
-      app.appendChild(grid);
-    }
-
-    function showNextScreen(language) {
-      const data = cards[language];
-
-      app.innerHTML =
-        '<section class="next-screen">' +
-          '<h1>' + data.nextTitle + '</h1>' +
-          '<p>' + data.nextText + '</p>' +
-          '<button class="back-button" onclick="showLanguageScreen()">' + data.backText + '</button>' +
-        '</section>';
-    }
-
-    showLanguageScreen();
-  </script>
-</body>
-</html>
