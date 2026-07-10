@@ -905,3 +905,148 @@
         '<div class="language-tabs">' +
           languageTabs.map(function(tab) {
             return (
+              '<button class="language-tab" type="button" onclick="scrollToLanguage(\'' + tab.code + '\')">' +
+                '<img src="' + tab.flag + '" alt="">' +
+                '<span>' + tab.label + '</span>' +
+              '</button>'
+            );
+          }).join("") +
+        '</div>'
+      );
+    }
+
+    function scrollToLanguage(language) {
+      const target = document.getElementById("card-" + language);
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function showLanguageScreen() {
+      app.innerHTML = "";
+
+      const grid = document.createElement("div");
+      grid.className = "language-grid";
+
+      Object.keys(cards).forEach(function(language) {
+        const data = cards[language];
+
+        const card = document.createElement("div");
+        card.className = "language-card " + language;
+        card.id = "card-" + language;
+
+        card.innerHTML =
+          makeLanguageTabs() +
+          '<p class="intro-text">' + data.intro + '</p>' +
+          '<button class="question-banner" type="button">' + data.banner + '</button>' +
+          data.concerns.map(function(item) {
+            return (
+              '<div class="concern-row">' +
+                '<img class="concern-image" src="' + item[0] + '" alt="">' +
+                '<div class="concern-text">' +
+                  '<span class="concern-title">' + item[1] + '</span>' +
+                  '<span class="concern-desc">' + item[2] + '</span>' +
+                '</div>' +
+              '</div>'
+            );
+          }).join("");
+
+        const bannerButton = card.querySelector(".question-banner");
+
+        bannerButton.addEventListener("click", function() {
+          bannerButton.classList.add("clicked");
+
+          setTimeout(function() {
+            showRoutineScreen(language);
+          }, 350);
+        });
+
+        grid.appendChild(card);
+      });
+
+      app.appendChild(grid);
+    }
+
+    function showRoutineScreen(language) {
+      const data = routines[language];
+
+      app.innerHTML =
+        '<section class="routine-page">' +
+          '<header class="routine-header">' +
+            '<img class="routine-flag" src="' + data.flag + '" alt="">' +
+            '<h1 class="routine-title">' + data.title + '</h1>' +
+            '<p class="routine-subtitle">' + data.subtitle + '</p>' +
+          '</header>' +
+          '<div class="product-grid">' +
+            data.products.map(function(product, index) {
+              return (
+                '<article class="product-card ' + product.color + '" onclick="openProductModal(\'' + language + '\',' + index + ')">' +
+                  '<div class="product-number">' + product.number + '</div>' +
+                  '<h2 class="product-name">' + product.name + '</h2>' +
+                  '<p class="product-brand">' + product.brand + '</p>' +
+                  '<img class="product-image" src="' + product.image + '" alt="">' +
+                  '<p class="product-price">' + product.price + '</p>' +
+                  '<p class="product-point">' + product.point + '</p>' +
+                  '<p class="product-desc">' + product.desc + '</p>' +
+                  '<ul class="product-list">' +
+                    product.list.map(function(item) {
+                      return '<li>' + item + '</li>';
+                    }).join("") +
+                  '</ul>' +
+                '</article>'
+              );
+            }).join("") +
+          '</div>' +
+          '<div class="routine-tip">' + data.tip + '</div>' +
+          '<div class="routine-actions">' +
+            '<button class="back-button" onclick="showLanguageScreen()">' + data.backText + '</button>' +
+          '</div>' +
+          '<div id="productModal" class="modal-overlay" onclick="closeProductModal(event)"></div>' +
+        '</section>';
+    }
+
+    function openProductModal(language, index) {
+      const routine = routines[language];
+      const product = routine.products[index];
+      const modal = document.getElementById("productModal");
+
+      modal.className = "modal-overlay show";
+      modal.innerHTML =
+        '<div class="modal-card ' + product.color + '" onclick="event.stopPropagation()">' +
+          '<button class="modal-close" onclick="closeProductModal()">&times;</button>' +
+          '<div class="product-number">' + product.number + '</div>' +
+          '<h2 class="modal-title product-name">' + product.name + '</h2>' +
+          '<p class="modal-brand">' + product.brand + '</p>' +
+          '<img class="modal-image" src="' + product.image + '" alt="">' +
+          '<p class="modal-price product-price">' + product.price + '</p>' +
+          '<p class="modal-point product-point">' + product.point + '</p>' +
+          '<p class="modal-desc">' + product.desc + '</p>' +
+          '<ul class="modal-list product-list">' +
+            product.list.map(function(item) {
+              return '<li>' + item + '</li>';
+            }).join("") +
+          '</ul>' +
+        '</div>';
+    }
+
+    function closeProductModal(event) {
+      if (event && event.target.className !== "modal-overlay show") {
+        return;
+      }
+
+      const modal = document.getElementById("productModal");
+
+      if (modal) {
+        modal.className = "modal-overlay";
+        modal.innerHTML = "";
+      }
+    }
+
+    showLanguageScreen();
+  </script>
+</body>
+</html>
