@@ -120,21 +120,23 @@
     }
 
     .question-banner {
-      width: 100%;
-      margin-bottom: 24px;
-      padding: 16px 12px;
-      border: 0;
-      border-radius: 8px;
-      color: white;
-      text-align: center;
-      font-size: 25px;
-      font-weight: 900;
-      line-height: 1.35;
-      cursor: pointer;
-      box-sizing: border-box;
-      transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
-    }
-
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px 12px;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.35;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
     .question-banner:hover {
       transform: translateY(-2px);
       filter: brightness(1.04);
@@ -143,6 +145,38 @@
     .question-banner:active {
       transform: scale(0.98);
     }
+
+.question-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  animation: bannerShine 2.8s infinite;
+  pointer-events: none;
+}
+
+@keyframes bannerShine {
+  0% {
+    left: -80%;
+  }
+
+  45% {
+    left: 120%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+    
 
     .ko .question-banner {
       background: #e94d6b;
