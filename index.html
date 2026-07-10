@@ -716,6 +716,8 @@
   <script>
     const app = document.getElementById("app");
 
+    let currentRoutineLanguage = "";
+
     const languageTabs = [
       { code: "ko", flag: "kr.jpg", label: "한국어" },
       { code: "zh", flag: "cn.jpg", label: "中文(简体)" },
@@ -992,8 +994,14 @@
       app.appendChild(grid);
     }
 
-    function showRoutineScreen(language) {
-      const data = routines[language];
+    function showRoutineScreen(language, saveHistory = true) {
+  currentRoutineLanguage = language;
+
+  if (saveHistory) {
+    history.pushState({ screen: "routine", language: language }, "");
+  }
+
+  const data = routines[language];
 
       app.innerHTML =
         '<section class="routine-page ' + language + '">' +
@@ -1024,7 +1032,7 @@
           '</div>' +
           '<div class="routine-tip">' + data.tip + '</div>' +
           '<div class="routine-actions">' +
-            '<button class="back-button" onclick="showLanguageScreen()">' + data.backText + '</button>' +
+            '<button class="back-button" onclick="history.pushState({ screen: \'home\' }, \'\'); showLanguageScreen(); window.scrollTo({ top: 0, behavior: \'auto\' });">' + data.backText + '</button>' +
           '</div>' +
           '<div id="productModal" class="modal-overlay" onclick="closeProductModal(event)"></div>' +
         '</section>';
@@ -1035,8 +1043,12 @@
 });
     }
 
-    function openProductModal(language, index) {
-      const routine = routines[language];
+    function openProductModal(language, index, saveHistory = true) {
+  if (saveHistory) {
+    history.pushState({ screen: "modal", language: language, index: index }, "");
+  }
+
+  const routine = routines[language];
       const product = routine.products[index];
       const modal = document.getElementById("productModal");
 
@@ -1060,19 +1072,48 @@
     }
 
     function closeProductModal(event) {
-      if (event && event.target.className !== "modal-overlay show") {
-        return;
-      }
+  if (event && event.target !== event.currentTarget) {
+    return;
+  }
 
-      const modal = document.getElementById("productModal");
+  if (history.state && history.state.screen === "modal") {
+    history.back();
+    return;
+  }
 
-      if (modal) {
-        modal.className = "modal-overlay";
-        modal.innerHTML = "";
-      }
-    }
+  const modal = document.getElementById("productModal");
 
+  if (modal) {
+    modal.className = "modal-overlay";
+    modal.innerHTML = "";
+  }
+}
+
+    history.replaceState({ screen: "home" }, "");
+
+window.addEventListener("popstate", function(event) {
+  const state = event.state;
+
+  if (!state || state.screen === "home") {
     showLanguageScreen();
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  if (state.screen === "routine") {
+    showRoutineScreen(state.language, false);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  if (state.screen === "modal") {
+    showRoutineScreen(state.language, false);
+    openProductModal(state.language, state.index, false);
+    return;
+  }
+});
+
+showLanguageScreen();
   </script>
 </body>
 </html>
